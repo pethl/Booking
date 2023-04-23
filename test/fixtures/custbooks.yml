@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  restaurant_id: 1
+  booking_date_time: 2023-04-23 14:11:31
+  number_of_diners: 1
+  accessible: false
+  highchair: 1
+  name: MyString
+  email: MyString
+  phone: MyString
+  status: MyString
+
+two:
+  restaurant_id: 1
+  booking_date_time: 2023-04-23 14:11:31
+  number_of_diners: 1
+  accessible: false
+  highchair: 1
+  name: MyString
+  email: MyString
+  phone: MyString
+  status: MyString

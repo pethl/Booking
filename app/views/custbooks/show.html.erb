@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @custbook %>
+
+<div>
+  <%= link_to "Edit this custbook", edit_custbook_path(@custbook) %> |
+  <%= link_to "Back to custbooks", custbooks_path %>
+
+  <%= button_to "Destroy this custbook", @custbook, method: :delete %>
+</div>

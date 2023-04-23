@@ -10,9 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_22_103645) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_23_151907) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "aboo", force: :cascade do |t|
+    t.datetime "booking_date_time"
+    t.integer "number_of_diners", default: 0, null: false
+    t.boolean "accessible", default: false, null: false
+    t.integer "highchair", default: 0, null: false
+    t.string "name", null: false
+    t.string "email", null: false
+    t.string "phone", null: false
+    t.string "status", default: "f", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "custbooks", force: :cascade do |t|
+    t.bigint "restaurant_id_id"
+    t.datetime "booking_date_time"
+    t.integer "number_of_diners", null: false
+    t.boolean "accessible", default: false, null: false
+    t.integer "highchair", null: false
+    t.string "name", null: false
+    t.string "email", null: false
+    t.string "phone", null: false
+    t.string "status", null: false
+    t.string "source", null: false
+    t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "restaurant_id"
+    t.bigint "restaurants_id"
+    t.datetime "cancelled_at"
+    t.string "cancelled_by"
+    t.index ["restaurant_id_id"], name: "index_custbooks_on_restaurant_id_id"
+    t.index ["restaurants_id"], name: "index_custbooks_on_restaurants_id"
+  end
 
   create_table "rdetails", force: :cascade do |t|
     t.integer "restaurant_id", default: 0, null: false
@@ -64,4 +100,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_22_103645) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "custbooks", "restaurants"
 end
