@@ -1,0 +1,37 @@
+<div id="<%= dom_id rdetail %>">
+  <p>
+    <light>Restaurant:</light>
+     <td><b> <%= rdetail.restaurant.name %></b>,  <i><%= rdetail.restaurant.location %></i></td>   
+  </p>
+
+  <p>
+    <strong>Booking duration:</strong>
+    <%= rdetail.booking_duration %>
+  </p>
+
+  <p>
+    <strong>Min booking:</strong>
+    <%= rdetail.min_booking %>
+  </p>
+
+  <p>
+    <strong>Max booking:</strong>
+    <%= rdetail.max_booking %>
+  </p>
+
+  <p>
+    <strong>Last booking time:</strong>
+    <%= rdetail.last_booking_time.to_fs(:time_24) %>
+  </p>
+
+  <p>
+    <strong>Big table count:</strong>
+    <%= rdetail.big_table_count %>
+  </p>
+
+  <p>
+    <strong>Max diners at current time:</strong>
+    <%= rdetail.max_diners_at_current_time %>
+  </p>
+
+</div>

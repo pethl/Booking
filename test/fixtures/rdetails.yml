@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  restaurant_id: 1
+  booking_duration: 1
+  min_booking: 1
+  max_booking: 1
+  last_booking_time: 2023-04-22 11:36:45
+  big_table_count: 1
+  max_diners_at_current_time: 1
+
+two:
+  restaurant_id: 1
+  booking_duration: 1
+  min_booking: 1
+  max_booking: 1
+  last_booking_time: 2023-04-22 11:36:45
+  big_table_count: 1
+  max_diners_at_current_time: 1

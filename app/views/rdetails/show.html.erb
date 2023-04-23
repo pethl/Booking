@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @rdetail %>
+
+<div>
+  <%= link_to "Edit this rdetail", edit_rdetail_path(@rdetail) %> |
+  <%= link_to "Back to rdetails", rdetails_path %>
+
+  <%= button_to "Destroy this rdetail", @rdetail, method: :delete %>
+</div>
