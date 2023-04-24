@@ -1,0 +1,21 @@
+
+<%= simple_form_for(@reservation) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :restaurant_id, :collection => @restaurants , :prompt => "Choose a Restaurant" %>
+    <%= f.input :booking_date_time %>
+    <%= f.input :number_of_diners, :label => "Number of diners", :collection => 1..8, :input_html => {:id=>"number_of_diners" } %>
+    <%= f.input :accessible, as: :boolean, include_hidden: false %>
+    <%= f.input :highchair, :label => "Number of highchairs needed?", :collection => 0..2, :input_html => {:id=>"number_of_highchairs" } %>
+    <%= f.input :name, label: 'Contact Name' %>
+    <%= f.input :email, label: 'Contact Email' %>
+    <%= f.input :phone, label: 'Contact Phone Number' %>
+     <%= f.input :notes, as: :text %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

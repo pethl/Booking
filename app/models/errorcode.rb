@@ -1,0 +1,2 @@
+class Errorcode < ApplicationRecord
+end

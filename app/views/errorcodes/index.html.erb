@@ -1,0 +1,29 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Errorcodes</h1>
+
+<div id="errorcodes">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Ref</th>
+      <th scope="col">Msg</th>
+      <th scope="col">Description</th>
+      <th scope="col">Created at</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @errorcodes.each do |errorcode| %>
+    <tr>
+      <td scope="row">  <%= link_to errorcode.ref, errorcode %></th>
+      <td><%= errorcode.msg %></td>
+      <td><%= errorcode.desc %></td>
+      <td><%= errorcode.created_at.to_fs(:short) %></td>
+    </tr>
+    <% end%>
+  </tbody>
+</table>
+
+
+<%= link_to "New errorcode", new_errorcode_path %>
+</div>

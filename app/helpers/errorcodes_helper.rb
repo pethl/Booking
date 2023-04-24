@@ -1,0 +1,2 @@
+module ErrorcodesHelper
+end

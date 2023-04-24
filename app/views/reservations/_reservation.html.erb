@@ -1,0 +1,47 @@
+<div id="<%= dom_id reservation %>">
+  <p>
+    <strong>Restaurant:</strong>
+    <%= reservation.restaurant.name %>
+  </p>
+
+  <p>
+    <strong>Booking date time:</strong>
+    <%= reservation.booking_date_time.to_fs(:time_24) %>
+  </p>
+
+  <p>
+    <strong>Number of diners:</strong>
+    <%= reservation.number_of_diners %>
+  </p>
+
+  <p>
+    <strong>Accessible:</strong>
+    <%= reservation.accessible %>
+  </p>
+
+  <p>
+    <strong>Highchair:</strong>
+    <%= reservation.highchair %>
+  </p>
+
+  <p>
+    <strong>Name:</strong>
+    <%= reservation.name %>
+  </p>
+
+  <p>
+    <strong>Email:</strong>
+    <%= reservation.email %>
+  </p>
+
+  <p>
+    <strong>Phone:</strong>
+    <%= reservation.phone %>
+  </p>
+
+  <p>
+    <strong>Status:</strong>
+    <%= reservation.status %>
+  </p>
+
+</div>

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :errorcodes
+  resources :reservations
   resources :custbooks
   resources :abookings
   resources :rdetails

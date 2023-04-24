@@ -1,0 +1,35 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Reservations</h1>
+
+<div id="reservations">
+<table class="table table-striped table-sm">
+  <thead>
+    <tr>
+      <th scope="col">UUID</th>
+      <th scope="col">Restaurant</th>
+      <th scope="col">Date/Time</th>
+      <th scope="col">Name</th>
+      <th scope="col">Accessible</th>
+      <th scope="col">Highchair</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+   <% @reservations.each do |reservation| %>
+    <tr>
+      <td scope="row">  <%= link_to reservation.id, reservation %></th>
+      <td><%= reservation.restaurant.name %></td>
+      <td><%= reservation.booking_date_time.to_fs(:short) %></td>
+      <td><%= reservation.name %></td>
+      <td><%= reservation.accessible %></td>
+      <td><%= reservation.highchair %></td>
+      <td><%= reservation.status %></td>
+    </tr>
+    <% end%>
+  </tbody>
+</table>
+</div>
+
+
+<%= link_to "New reservation", new_reservation_path %>

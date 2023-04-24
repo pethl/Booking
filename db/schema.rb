@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_23_151907) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_23_211456) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -50,6 +50,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_23_151907) do
     t.index ["restaurants_id"], name: "index_custbooks_on_restaurants_id"
   end
 
+  create_table "errorcodes", force: :cascade do |t|
+    t.string "ref"
+    t.string "msg"
+    t.text "desc"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "rdetails", force: :cascade do |t|
     t.integer "restaurant_id", default: 0, null: false
     t.integer "booking_duration"
@@ -60,6 +68,27 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_23_151907) do
     t.integer "max_diners_at_current_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "reservations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.bigint "restaurant_id"
+    t.datetime "booking_date_time", null: false
+    t.integer "number_of_diners", null: false
+    t.boolean "accessible", default: false
+    t.integer "highchair", default: 0
+    t.string "name", null: false
+    t.string "email", null: false
+    t.string "phone", null: false
+    t.string "status"
+    t.string "source"
+    t.datetime "cancelled_at"
+    t.integer "cancelled_by"
+    t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "restaurants_id"
+    t.index ["restaurant_id"], name: "index_reservations_on_restaurant_id"
+    t.index ["restaurants_id"], name: "index_reservations_on_restaurants_id"
   end
 
   create_table "restaurants", force: :cascade do |t|
@@ -101,4 +130,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_23_151907) do
   end
 
   add_foreign_key "custbooks", "restaurants"
+  add_foreign_key "reservations", "restaurants"
 end
