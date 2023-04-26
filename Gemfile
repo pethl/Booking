@@ -81,3 +81,4 @@ group :test do
 end
 
 gem 'simple_form'
+gem 'bootstrap-datepicker-rails', '~> 1.6', '>= 1.6.1.1'

@@ -1,0 +1,47 @@
+<!--  jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<!-- Bootstrap Date-Picker Plugin -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+<div class="container">
+ <div class="row">
+   <div class="col-md">
+
+   <%= simple_form_for(@reservation) do |f| %>
+    
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+    <div class="form-inputs">
+    <% invalid = @reservation.errors.include?(:booking_date_time) %>
+        <% end_date_3_months_away = ((Date.today.end_of_month)+2.months).strftime('%d-%m-%Y')%>
+ 
+        <%= f.input :restaurant_id, :collection => @restaurants , :prompt => "Choose a Restaurant" %>
+   
+        <%= f.label :booking_date_time, label: 'Reservation Date' %>
+         <br>
+        <input class="datepicker" data-provide='datepicker' id="booking_date_time" name="reservation[booking_date_time]"  type="text"  data-date-format=D,dd-M-yyyy data-date-start-date=[<%= Date.tomorrow.strftime('%d-%m-%Y')%>] data-date-days-of-week-disabled=[1,2] data-date-week-start=[1] data-dates-disabled=["24-12-2023","25-12-20123","26-12-2023","27-12-2023","28-12-2023","29-12-2023","30-12-2023","31-12-2023","01-01-2023"] data-date-end-date=[<%= end_date_3_months_away %>] data-date-autoclose=[true]  data-date-today-highlight=true data-date-orientation="bottom" > 
+        <% if invalid %>
+          <div class="invalid-feedback d-block">
+            <% reservation.errors.full_messages_for(:booking_date_time).each do |error_message| %>
+              <%= error_message %>.
+            <% end %>
+      </div>
+    <% end %>
+    <br><br>
+    
+    <%= f.input :number_of_diners, :label => "Number of diners", :collection => 1..8, :input_html => {:id=>"number_of_diners" } %>
+  
+   </div>
+  
+  <div class="form-actions">
+    <%= f.button :submit, 'Check Availability', :class =>"btn btn-outline-info" %>
+  </div>
+  
+<% end %>
+
+</div>
+ <div class="col-md"></div>
+</div>

@@ -3,4 +3,11 @@ class PagesController < ApplicationController
   
   def welcome
   end
+  
+  def reservation
+    @reservation = Reservation.new
+    @restaurants = Restaurant.all
+  end
+
+  
 end

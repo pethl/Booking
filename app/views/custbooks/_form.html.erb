@@ -5,6 +5,7 @@
 
   <div class="form-inputs">
     <%= f.input :restaurant_id, :collection => @restaurants , :prompt => "Choose a Restaurant" %>
+    
     <%= f.input :booking_date_time %>
     <%= f.input :number_of_diners, :label => "Number of diners", :collection => 1..8, :input_html => {:id=>"number_of_diners" } %>
     <%= f.input :accessible, as: :boolean, include_hidden: false %>

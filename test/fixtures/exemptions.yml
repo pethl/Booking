@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  exempt_dat: 2023-04-25 21:40:33
+  exempt_msg: MyString
+  lunch: false
+  dinner: false
+
+two:
+  exempt_dat: 2023-04-25 21:40:33
+  exempt_msg: MyString
+  lunch: false
+  dinner: false

@@ -10,23 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_23_211456) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_25_204033) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
-
-  create_table "aboo", force: :cascade do |t|
-    t.datetime "booking_date_time"
-    t.integer "number_of_diners", default: 0, null: false
-    t.boolean "accessible", default: false, null: false
-    t.integer "highchair", default: 0, null: false
-    t.string "name", null: false
-    t.string "email", null: false
-    t.string "phone", null: false
-    t.string "status", default: "f", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "custbooks", force: :cascade do |t|
     t.bigint "restaurant_id_id"
@@ -58,6 +45,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_23_211456) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "exemptions", force: :cascade do |t|
+    t.datetime "exempt_dat"
+    t.string "exempt_msg"
+    t.boolean "lunch"
+    t.boolean "dinner"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "rdetails", force: :cascade do |t|
     t.integer "restaurant_id", default: 0, null: false
     t.integer "booking_duration"
@@ -76,9 +72,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_23_211456) do
     t.integer "number_of_diners", null: false
     t.boolean "accessible", default: false
     t.integer "highchair", default: 0
-    t.string "name", null: false
-    t.string "email", null: false
-    t.string "phone", null: false
+    t.string "name"
+    t.string "email"
+    t.string "phone"
     t.string "status"
     t.string "source"
     t.datetime "cancelled_at"

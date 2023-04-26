@@ -6,9 +6,9 @@ class CreateReservations < ActiveRecord::Migration[7.0]
       t.integer :number_of_diners, null: false
       t.boolean :accessible, default: false
       t.integer :highchair, default: 0
-      t.string :name, null: false
-      t.string :email, null: false
-      t.string :phone, null: false
+      t.string :name
+      t.string :email
+      t.string :phone
       t.string :status
       t.string :source
       t.datetime :cancelled_at

@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Exemptions</h1>
+
+<div id="exemptions">
+  <% @exemptions.each do |exemption| %>
+    <%= render exemption %>
+    <p>
+      <%= link_to "Show this exemption", exemption %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New exemption", new_exemption_path %>
