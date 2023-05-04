@@ -1,0 +1,21 @@
+<div id="<%= dom_id opening_hour %>">
+  <p>
+    <strong>Day:</strong>
+    <%= Date::DAYNAMES[opening_hour.day] %>
+  </p>
+
+  <p>
+    <strong>Open:</strong>
+    <%= opening_hour.open %>
+  </p>
+  <h6>Sittings:</h6>
+  <table class="table table-striped">
+  <% opening_hour.sittings.each do |sitting| %>
+    <tr>
+     <td><%= sitting.start_time.to_fs(:time_24) %> </td>
+     <td><%= sitting.end_time.to_fs(:time_24) %></td>
+     </tr>
+<% end %>
+</table>
+<br><br>
+</div>

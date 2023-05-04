@@ -1,0 +1,25 @@
+<p style="color: green"><%= notice %></p>
+<h1>Opening Hours</h1>
+
+<div id="opening_hours">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Day</th>
+      <th scope="col">Open</th>
+      <th scope="col">Sittings</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @opening_hours.each do |opening_hour| %>
+    <tr>
+      <td scope="row"><%= link_to Date::DAYNAMES[opening_hour.day], opening_hour %></th>
+      <td><%= opening_hour.open %></td>
+      <td><%= opening_hour.sittings.count %></td>
+    </tr>
+    <% end%>
+  </tbody>
+</table>
+
+<%= link_to "New Opening Hours record", new_opening_hour_path %>
+</div>

@@ -43,9 +43,15 @@ class ReservationsController < ApplicationController
   # POST /reservations or /reservations.json
   def create
     @reservation = Reservation.new(reservation_params)
-    Rails.logger.debug("basicr_rules_rtn : #{Reservation.basicrules(@reservation).inspect}")
-    if Reservation.basicrules(@reservation)== true
+   
+    Rails.logger.debug("basic_rules_rtn : #{Reservation.basicrules(@reservation).inspect}")
+    Rails.logger.debug("o_h_rules_rtn : #{Reservation.openinghourrules(@reservation).inspect}")
     
+    if ((Reservation.basicrules(@reservation)== true) && (Reservation.openinghourrules(@reservation)== true))
+   
+   times=Reservation.generatetimes(@reservation)
+   puts times.inspect
+      
     respond_to do |format|
       if @reservation.save
         format.html { redirect_to reservation_url(@reservation), notice: "Reservation was successfully created." }
@@ -55,7 +61,7 @@ class ReservationsController < ApplicationController
         format.json { render json: @reservation.errors, status: :unprocessable_entity }
       end
     end
-  else redirect_to reservations_path
+  else redirect_to reservation_url(@reservation), notice: "Reservation could not create."
   end
     
 
@@ -84,6 +90,15 @@ class ReservationsController < ApplicationController
     end
   end
 
+  def gettimes
+    if ((Reservation.basicrules(@reservation)== true) && (Reservation.openinghourrules(@reservation)== true))
+      @available_times = Reservation.generatetimes(@reservation)
+      
+    else
+      return redirect_to reservations_path, notice: "Failure"
+    end
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_reservation

@@ -1,0 +1,22 @@
+<div id="<%= dom_id employee %>">
+  <p>
+    <strong>Employee name:</strong>
+    <%= employee.employee_name %>
+  </p>
+
+  <p>
+    <strong>Gender:</strong>
+    <%= employee.gender %>
+  </p>
+  
+  <!-- Dynamic Address Show Here -->
+  <div>
+    <% @employee.addresses.each do |address| %>
+      House Number: <%= address.house_number %> <br>
+      Society Name: <%= address.society_name %> <br>
+      Area: <%= address.area %> <br>
+      City: <%= address.city %> <br>
+    <% end %>
+  </div>
+
+</div>

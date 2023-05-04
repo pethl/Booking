@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_25_204033) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_02_205406) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.integer "house_number"
+    t.string "society_name"
+    t.string "area"
+    t.string "city"
+    t.bigint "employee_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["employee_id"], name: "index_addresses_on_employee_id"
+  end
 
   create_table "custbooks", force: :cascade do |t|
     t.bigint "restaurant_id_id"
@@ -37,6 +48,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_25_204033) do
     t.index ["restaurants_id"], name: "index_custbooks_on_restaurants_id"
   end
 
+  create_table "employees", force: :cascade do |t|
+    t.string "employee_name"
+    t.string "gender"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "errorcodes", force: :cascade do |t|
     t.string "ref"
     t.string "msg"
@@ -52,6 +70,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_25_204033) do
     t.boolean "dinner"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "opening_hours", force: :cascade do |t|
+    t.integer "day", null: false
+    t.boolean "open", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "restaurant_id", null: false
+    t.index ["restaurant_id"], name: "index_opening_hours_on_restaurant_id"
   end
 
   create_table "rdetails", force: :cascade do |t|
@@ -99,6 +126,24 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_25_204033) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "sattings", force: :cascade do |t|
+    t.time "start_time"
+    t.string "end_time"
+    t.bigint "opening_hour_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["opening_hour_id"], name: "index_sattings_on_opening_hour_id"
+  end
+
+  create_table "sittings", force: :cascade do |t|
+    t.time "start_time"
+    t.time "end_time"
+    t.bigint "opening_hour_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["opening_hour_id"], name: "index_sittings_on_opening_hour_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -126,5 +171,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_25_204033) do
   end
 
   add_foreign_key "custbooks", "restaurants"
+  add_foreign_key "opening_hours", "restaurants"
   add_foreign_key "reservations", "restaurants"
+  add_foreign_key "sattings", "opening_hours"
+  add_foreign_key "sittings", "opening_hours"
 end

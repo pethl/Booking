@@ -1,4 +1,27 @@
-<h1>Pages#welcome</h1>
-<p>Find me in app/views/pages/welcome.html.erb</p>
+<h1>Booking System Home Page</h1>
+<p>Welcome to your booking home page</p>
 
-<%= link_to "Make Reservation", pages_reservation_path %>
+<%= link_to "Make Reservation", pages_reservation_path, class: "btn btn-info" %>
+<hr>
+<h2>Restaurant Opening Hours</h2>
+
+<% @restaurants.each do |restaurant| %>
+<h3>  <%= restaurant.name %> -  <%= restaurant.location %></h3>
+
+<div class="container mt-10">
+  <% restaurant.opening_hours.each do |oh| %>
+     <%= Date::DAYNAMES[oh.day] %> -  
+     <%= oh.open ? "Open" : "Closed" %> : 
+      
+      <% if (oh.sittings.count>0) %>
+          <% oh.sittings.each do |sitting| %>
+            <%= sitting.start_time.to_fs(:time_24) %> -  <%= sitting.end_time.to_fs(:time_24) %> : 
+     
+          <% end %>
+      <% end %>
+      <br>
+     <% end %>
+</div>
+ <% end %>
+ <hr>
+

@@ -1,5 +1,8 @@
 {
   "dependencies": {
-    "@popperjs/core": "^2.11.7"
+    "@nathanvda/cocoon": "^1.2.14",
+    "@popperjs/core": "^2.11.7",
+    "cocoon": "github:nathanvda/cocoon",
+    "jquery": "^3.6.4"
   }
 }

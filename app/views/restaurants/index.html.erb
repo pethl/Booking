@@ -3,12 +3,27 @@
 <h1>Restaurants</h1>
 
 <div id="restaurants">
-  <% @restaurants.each do |restaurant| %>
-    <%= render restaurant %>
-    <p>
-      <%= link_to "Show this restaurant", restaurant %>
-    </p>
-  <% end %>
-</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Account Number</th>
+      <th scope="col">Name</th>
+      <th scope="col">Location</th>
+      <th scope="col">Contact at</th>
+      <th scope="col">Email at</th>
+    </tr>
+  </thead>
+  <tbody>
+   <% @restaurants.each do |restaurant| %>
+    <tr>
+      <td scope="row">  <%= link_to restaurant.account_id, restaurant %></th>
+      <td><%= restaurant.name %></td>
+      <td><%= restaurant.location %></td>
+      <td><%= restaurant.primary_contact %></td>
+      <td><%= restaurant.email %></td>
+    </tr>
+    <% end%>
+  </tbody>
+</table>
 
 <%= link_to "New restaurant", new_restaurant_path %>

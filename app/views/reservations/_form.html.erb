@@ -27,6 +27,10 @@
     <% end %>
     <br><br>
     
+    <div>
+    <%= @available_times.inspect %>
+    </div>
+    
     <%= f.input :number_of_diners, :label => "Number of diners", :collection => 1..8, :input_html => {:id=>"number_of_diners" } %>
     <%= f.input :accessible, as: :boolean, include_hidden: false %>
     <%= f.input :highchair, :label => "Number of highchairs needed?", :collection => 0..2, :input_html => {:id=>"number_of_highchairs" } %>

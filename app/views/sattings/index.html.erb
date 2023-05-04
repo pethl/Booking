@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Sattings</h1>
+
+<div id="sattings">
+  <% @sattings.each do |satting| %>
+    <%= render satting %>
+    <p>
+      <%= link_to "Show this satting", satting %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New satting", new_satting_path %>

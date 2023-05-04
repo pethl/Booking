@@ -82,3 +82,5 @@ end
 
 gem 'simple_form'
 gem 'bootstrap-datepicker-rails', '~> 1.6', '>= 1.6.1.1'
+gem 'jquery-rails'
+gem 'cocoon'

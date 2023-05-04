@@ -20,7 +20,7 @@
     <tr>
       <td scope="row">  <%= link_to reservation.id, reservation %></th>
       <td><%= reservation.restaurant.name %></td>
-      <td><%= reservation.booking_date_time.to_fs(:short) %></td>
+      <td><%= reservation.booking_date_time.to_fs(:day_date_time) %></td>
       <td><%= reservation.name %></td>
       <td><%= reservation.accessible %></td>
       <td><%= reservation.highchair %></td>

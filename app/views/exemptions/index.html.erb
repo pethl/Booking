@@ -3,12 +3,29 @@
 <h1>Exemptions</h1>
 
 <div id="exemptions">
-  <% @exemptions.each do |exemption| %>
-    <%= render exemption %>
-    <p>
-      <%= link_to "Show this exemption", exemption %>
-    </p>
-  <% end %>
-</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Date</th>
+      <th scope="col">Msg</th>
+      <th scope="col">Lunch</th>
+      <th scope="col">Dinner at</th>
+      <th scope="col">Created at</th>
+    </tr>
+  </thead>
+  <tbody>
+   <% @exemptions.each do |exemption| %>
+    <tr>
+      <td scope="row">  <%= link_to exemption.exempt_dat.to_fs(:day_month_and_year), exemption %></th>
+      <td><%= exemption.exempt_msg %></td>
+      <td><%= exemption.lunch %></td>
+      <td><%= exemption.dinner %></td>
+      <td><%= exemption.created_at.to_fs(:short) %></td>
+    </tr>
+    <% end%>
+  </tbody>
+</table>
 
 <%= link_to "New exemption", new_exemption_path %>
+
+

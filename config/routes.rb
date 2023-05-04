@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :employees
+  resources :sattings
+  resources :sittings
+  resources :opening_hours
   resources :exemptions
   resources :errorcodes
   resources :reservations do
@@ -11,6 +15,8 @@ end
   resources :restaurants
   devise_for :users
   
+  #Route for the gettimes_pages_path for the put method
+ # put 'reservations/gettimes', to: 'reservations#gettimes', as: 'gettimes_reservations' #gettimes_reservations_path
   get 'pages/welcome'
   get 'pages/reservation'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

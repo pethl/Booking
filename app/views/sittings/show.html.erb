@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @sitting %>
+
+<div>
+  <%= link_to "Edit this sitting", edit_sitting_path(@sitting) %> |
+  <%= link_to "Back to sittings", sittings_path %>
+
+  <%= button_to "Destroy this sitting", @sitting, method: :delete %>
+</div>

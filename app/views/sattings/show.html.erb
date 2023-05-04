@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @satting %>
+
+<div>
+  <%= link_to "Edit this satting", edit_satting_path(@satting) %> |
+  <%= link_to "Back to sattings", sattings_path %>
+
+  <%= button_to "Destroy this satting", @satting, method: :delete %>
+</div>
