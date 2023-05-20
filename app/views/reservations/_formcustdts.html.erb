@@ -1,0 +1,33 @@
+<!--  jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<!-- Bootstrap Date-Picker Plugin -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+
+<%= simple_form_for(@reservation) do |f| %>
+  
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    
+    <h3>Booking at: <%= @restaurant.first.name %></h3>
+    <%= f.input :restaurant_id, :collection => @restaurants, disabled: true, :as => :hidden  %>
+    
+    <%= f.input :booking_date_time, disabled: true, :label => "Date / Time" %>
+    <%= f.input :number_of_diners, :label => "People", disabled: true, :collection => 1..8, :input_html => {:id=>"number_of_diners" } %>
+  
+    <%= f.input :accessible, as: :boolean, include_hidden: false, :label => "Accessible table required?" %>
+    <%= f.input :highchair, :label => "Number of highchairs required?", :collection => 0..2, :input_html => {:id=>"number_of_highchairs" } %>
+    <%= f.input :name, label: 'Name' %>
+    <%= f.input :email, label: 'Email' %>
+    <%= f.input :phone, label: 'Phone Number' %>
+    
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

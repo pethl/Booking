@@ -2,7 +2,11 @@ module Reservations
   class Openinghourrules
     
        def initialize(reservation)
-         @booking_date_time = reservation.booking_date_time
+         if reservation.booking_date==nil?
+           @booking_date_time = reservation.booking_date_time
+         else
+           @booking_date_time = reservation.booking_date
+         end
          @number_of_diners = reservation.number_of_diners
          @rdetails = Rdetail.where(:restaurant_id==reservation.restaurant_id).first
          @closed_days = OpeningHour.where(open: false).pluck(:day)
@@ -12,7 +16,8 @@ module Reservations
         
     	# the Opening Hour Rules 
         def call
-          Rails.logger.debug("sittings count : #{@sittings.count}")
+          Rails.logger.debug("IN OPENING HOURS METHOD")
+         
           # if restaurant is closed on this day 
           if @closed_days.include?(@booking_date_time.wday)
             return "Restaurant is closed on this day"

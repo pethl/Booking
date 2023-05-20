@@ -5,7 +5,6 @@ class Reservation < ApplicationRecord
      validates :booking_date_time, presence: true 
      validates :number_of_diners, presence: true  
      validates :name, presence: true  
- 
      
      def self.basicrules(reservation)
        Reservations::Basicrules.new(reservation).call
@@ -19,5 +18,9 @@ class Reservation < ApplicationRecord
        Reservations::Generatetimes.new(reservation).call
      end
      
-    
+     def to_hash
+        hash = {}; self.attributes.each { |k,v| hash[k] = v }
+        return hash
+      end
+        
 end

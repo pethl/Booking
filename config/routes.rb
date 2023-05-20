@@ -5,9 +5,10 @@ Rails.application.routes.draw do
   resources :opening_hours
   resources :exemptions
   resources :errorcodes
-  resources :reservations do
-    resources :tags
-      put '/enquiry_check', to: 'reservations#enquiry_check'
+  resources :reservations  do
+  collection do
+    get :customer_details
+  end
 end
   resources :custbooks
   resources :abookings
@@ -17,8 +18,16 @@ end
   
   #Route for the gettimes_pages_path for the put method
  # put 'reservations/gettimes', to: 'reservations#gettimes', as: 'gettimes_reservations' #gettimes_reservations_path
-  get 'pages/welcome'
-  get 'pages/reservation'
+  post 'enquiries/time_set', to: 'enquiries#time_set', as: 'time_set_enquiries' #time_set_enquiries_path
+  post 'enquiries/mergetime', to: 'enquiries#mergetime', as: 'mergetime_enquiries' #mergetime_enquiries_path
+
+ # get 'enquiries/mergetime'
+  get 'enquiries/picktime'
+  get 'enquiries/welcome'
+  get 'enquiries/reservation'
+  
+   get 'pages/welcome'
+  
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

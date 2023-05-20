@@ -1,0 +1,29 @@
+
+<div class="container mt-3">
+  <div class="row">
+    <div class="col text-center">
+    <br><br>
+      <%= image_tag("knifeandfork", size: "120x120", alt: "Knife and fork image")%>
+    </div>
+  
+    <div class="col">
+    <p>
+      You requested <b><%= @restaurant.name %></b>,<br>
+      on <%= @enquiry.booking_date.to_fs(:day_date_time) %> for <%= @enquiry.number_of_diners %> diners.
+      </p>
+ 
+    <p>
+    Available times, please select:<br><br>
+
+    <% @available_times.each do |booking_time| %>
+      
+    <%= link_to booking_time.to_time.to_fs(:time_24), mergetime_enquiries_path(enquiry: {booking_date: @enquiry.booking_date.to_date, restaurant_id: @enquiry.restaurant_id, number_of_diners: @enquiry.number_of_diners}, booking_time: booking_time),  data: { 'turbo-method' => :post } %>   
+      
+         <% end %>
+    </p>
+    </div>
+    <div class="col">
+    </div>
+
+   </div>  
+  </div>

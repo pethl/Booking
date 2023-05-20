@@ -1,0 +1,39 @@
+<div class="container mt-3">
+ 
+  <div class="row">
+     <div class="col text-center">
+     <br>
+      <%= image_tag("knifeandfork", size: "120x120", alt: "Knife and fork image")%>
+    </div>
+    
+    <div class="col">
+      <%= simple_form_for :enquiry, url: time_set_enquiries_path do |f|%>
+        <%= f.error_notification %>
+     
+       <div class="form-inputs">
+         <%= f.input 'restaurant_id', :collection => @restaurants , :prompt => "Restaurant", label: false%>
+         <input class="datepicker" data-provide='datepicker' id="booking_date" name="enquiry[booking_date]"  type="text"  data-date-format=dd-M-yyyy data-date-start-date=[<%= Date.tomorrow.strftime('%d-%m-%Y')%>] data-date-days-of-week-disabled=[1,2] data-date-week-start=[1] data-dates-disabled=["24-12-2023","25-12-20123","26-12-2023","27-12-2023","28-12-2023","29-12-2023","30-12-2023","31-12-2023","01-01-2023"] data-date-autoclose=[true]  data-date-today-highlight=true data-date-orientation="bottom" value=" Date"> 
+         <br><br>
+         <%= f.input 'number_of_diners', collection: 1..8, :input_html => {:id=> "number_of_diners", :type=> "number", :min => 0 },:prompt => "People", label: false %>
+        
+       <div class="form-actions">
+         <%= f.button :submit, 'Check Availability', :class =>"btn btn-outline-info" %>
+       </div>
+     <% end %>
+    </div>
+    
+    <div class="col">
+    </div>
+  </div>
+</div>
+
+
+<!--  jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<!-- Bootstrap Date-Picker Plugin -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+
+

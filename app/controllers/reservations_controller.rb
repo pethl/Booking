@@ -2,6 +2,14 @@ class ReservationsController < ApplicationController
   before_action :set_reservation, only: %i[ show edit update destroy ]
 
   # GET /reservations or /reservations.json
+  def customer_details
+   @reservation = Reservation.new(reservation_params)
+   @restaurant = Restaurant.where(:id => @reservation.restaurant_id) 
+   @booking_date_time = @reservation[:booking_date_time].to_date
+ end
+ 
+
+  # GET /reservations or /reservations.json
   def index
     @reservations = Reservation.all
   end
@@ -15,29 +23,10 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new
     @restaurants = Restaurant.all
   end
-  
-  def enquiry_check
-    @reservation = Reservation.find(params[:id])
-    populate the held params into object
-    @reservation = Reservation.new(reservation_params)
-    
-    run rules test code
-    @rules_test = Reservation.basicrules(@reservation)
-     Rails.logger.debug("@rules_test: #{@rules_test.inspect}")
-    
-     unless @rules_test == "good"
-      redirect_to enquiry_path, flash: { error: "Please complete all fields" }
-        #flash.alert = "Please complete all fields"
-            #return false
-      end
-    
-  end
 
   # GET /reservations/1/edit
   def edit
-    
     ([3,4].include? Date.today.wday) ? (@start_date_tomorrow = Date.today.strftime('%d-%m-%Y')) : (@start_date_tomorrow = Date.tomorrow.strftime('%d-%m-%Y'))
-   
   end
 
   # POST /reservations or /reservations.json
@@ -49,8 +38,7 @@ class ReservationsController < ApplicationController
     
     if ((Reservation.basicrules(@reservation)== true) && (Reservation.openinghourrules(@reservation)== true))
    
-   times=Reservation.generatetimes(@reservation)
-   puts times.inspect
+   @available_times=Reservation.generatetimes(@reservation)
       
     respond_to do |format|
       if @reservation.save
@@ -63,8 +51,7 @@ class ReservationsController < ApplicationController
     end
   else redirect_to reservation_url(@reservation), notice: "Reservation could not create."
   end
-    
-
+ 
   end
 
   # PATCH/PUT /reservations/1 or /reservations/1.json

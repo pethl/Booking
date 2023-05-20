@@ -6,11 +6,12 @@ module Reservations
          @number_of_diners = reservation.number_of_diners
          @exemptions = Exemption.pluck(:exempt_dat)
          @rdetails = Rdetail.where(:restaurant_id==reservation.restaurant_id).first
-              
         end
         
     	# the Basic Rules 
         def call
+           Rails.logger.debug("IN BASIC RULES METHOD")
+          
           if @booking_date_time.blank?
             return "Booking Date must be entered"
             

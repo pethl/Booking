@@ -15,6 +15,7 @@
   <% end_date_3_months_away = ((Date.today.end_of_month)+2.months).strftime('%d-%m-%Y')%>
  
     <%= f.input :restaurant_id, :collection => @restaurants , :prompt => "Choose a Restaurant" %>
+   
     <%= f.label :booking_date_time, label: 'Reservation Date' %>
      <br>
     <input class="datepicker" data-provide='datepicker' id="booking_date_time" name="reservation[booking_date_time]"  type="text"  data-date-format=D,dd-M-yyyy data-date-start-date=[<%= Date.tomorrow.strftime('%d-%m-%Y')%>] data-date-days-of-week-disabled=[1,2] data-date-week-start=[1] data-dates-disabled=["24-12-2023","25-12-20123","26-12-2023","27-12-2023","28-12-2023","29-12-2023","30-12-2023","31-12-2023","01-01-2023"] data-date-end-date=[<%= end_date_3_months_away %>] data-date-autoclose=[true]  data-date-today-highlight=true data-date-orientation="bottom" > 
@@ -28,7 +29,7 @@
     <br><br>
     
     <div>
-    <%= @available_times.inspect %>
+   
     </div>
     
     <%= f.input :number_of_diners, :label => "Number of diners", :collection => 1..8, :input_html => {:id=>"number_of_diners" } %>

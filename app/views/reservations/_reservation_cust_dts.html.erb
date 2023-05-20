@@ -1,12 +1,12 @@
-<div id="<%= dom_id reservation %>">
+<div >
   <p>
     <strong>Restaurant:</strong>
-    <%= reservation.restaurant.name %>
+    <%= @restaurant.name %>
   </p>
 
   <p>
     <strong>Booking date time:</strong>
-    <%= reservation.booking_date_time.to_fs(:short) %>    
+    <%= reservation.booking_date_time.to_fs(:short) %>  
   </p>
 
   <p>
